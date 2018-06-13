@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
-import Auth from "./component/Auth/Auth.js";
-import Dashboard from "./component/Dashboard/Dashboard.js";
-import Form from "./component/Form/Form.js";
 import Nav from "./component/Nav/Nav.js";
-import Post from "./component/Post/Post.js";
+import routes from "./routes.js";
 
 class App extends Component {
   render() {
+    //const currentPath = this.props.location.pathname;
     return (
       <div>
-        <Auth />
-        <Dashboard />
-        <Form />
+        {/*conditional render currentPath === "/" && <Nav />*/}
         <Nav />
-        <Post />
+        {routes}
+        {console.log(this)}
       </div>
     );
   }
