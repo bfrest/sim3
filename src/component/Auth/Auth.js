@@ -8,7 +8,8 @@ class Auth extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      toDashboard: false
     };
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
@@ -29,30 +30,24 @@ class Auth extends Component {
 
   createUser() {
     const { username, password } = this.state;
-    axios
-      .post("http://localhost3001/api/register", {
-        username,
-        password
-      })
-      .then(<Redirect to="/dashboard" />);
+    // this sets the state to of toDashboard to true if the register is successfull so it can redirect to the dashboard
+    axios.post("http://localhost:3001/api/register", { username, password }).then(this.setState({ toDashboard: true }));
+  }
+
+  attemptLogin() {
+    const { username, password } = this.state;
+    axios.post("http://localhost:3001/api/login", { username, password }).then(this.setState({ toDashboard: true }));
   }
 
   render() {
+    if (this.state.toDashboard === true) {
+      return <Redirect to="/dashboard" />;
+    }
     return (
       <div>
-        <input
-          className="usernameInput"
-          type="text"
-          placeholder="Username"
-          onChange={this.handleUsername}
-        />
+        <input className="usernameInput" type="text" placeholder="Username" onChange={this.handleUsername} />
 
-        <input
-          className="passwordInput"
-          type="text"
-          placeholder="Password"
-          onChange={this.handlePassword}
-        />
+        <input className="passwordInput" type="text" placeholder="Password" onChange={this.handlePassword} />
 
         <button>Login</button>
         <button onClick={this.createUser}>Register</button>
