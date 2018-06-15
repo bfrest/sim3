@@ -14,6 +14,7 @@ class Auth extends Component {
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.attemptLogin = this.attemptLogin.bind(this);
   }
 
   handleUsername(e) {
@@ -49,7 +50,7 @@ class Auth extends Component {
 
         <input className="passwordInput" type="text" placeholder="Password" onChange={this.handlePassword} />
 
-        <button>Login</button>
+        <button onClick={this.attemptLogin}>Login</button>
         <button onClick={this.createUser}>Register</button>
       </div>
     );

@@ -10,12 +10,13 @@ module.exports = {
   },
 
   attemptLogin: (req, res, next) => {
-    const db = req.app.get("db");
+    const dbConnect = req.app.get("db");
     const { username, password } = req.body;
+    console.log(username, password);
 
     dbConnect
       .attemptLogin([username, password])
       .then(user => res.status(200).send(user))
-      .catch(() => res.status(500).send());
+      .catch(err => res.status(500).send(err));
   }
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Nav = () => {
   return (
@@ -15,8 +16,18 @@ const Nav = () => {
       <Link to="/">
         <button>Logout</button>
       </Link>
+      {console.log(props)}
     </div>
   );
 };
 
-export default Nav;
+function mapStateToProps(state) {
+  const { username, profilePicture } = state;
+
+  return {
+    username,
+    profilePicture
+  };
+}
+
+export default connect(mapStateToProps)(Nav);
