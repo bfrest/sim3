@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 const Nav = props => {
   return (
     <div>
-      <p>this is {props.username}</p>
       <p>This is the nav</p>
+      <p>This will be th username</p>
+      <p>This will be th profile pic</p>
       <Link to="/dashboard">
         <button>Home</button>
       </Link>

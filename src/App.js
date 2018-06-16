@@ -18,7 +18,6 @@ class App extends Component {
       <div>
         {showNav}
         {routes}
-        {console.log(currentPath)}
       </div>
     );
   }

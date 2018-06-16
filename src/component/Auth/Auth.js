@@ -39,13 +39,21 @@ class Auth extends Component {
 
   attemptLogin() {
     const { username, password } = this.state;
-    axios.post("http://localhost:3001/api/login", { username, password }).then(this.setState({ toDashboard: true }));
+    // this is a post request because you need to be able to get the info from the bosy instead of putting it in the query parameter
+
+    axios.post("http://localhost:3001/api/login", { username, password }).then(result => {
+      // ! I think this is how to invoke the action creater
+      const { id, username, profile_picture } = result.data;
+      logIn(id, username, profile_picture);
+      this.setState({ toDashboard: true });
+    });
   }
 
   render() {
     if (this.state.toDashboard === true) {
       return <Redirect to="/dashboard" />;
     }
+
     return (
       <div>
         <input className="usernameInput" type="text" placeholder="Username" onChange={this.handleUsername} />
