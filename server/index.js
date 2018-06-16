@@ -1,9 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const massive = require("massive");
-const cors = require("cors");
+const express = require("express"),
+  bodyParser = require("body-parser"),
+  massive = require("massive"),
+  cors = require("cors"),
+  controller = require("./controller.js");
 require("dotenv").config();
-const controller = require("./controller.js");
 
 const app = express();
 app.use(cors());

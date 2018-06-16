@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-const Nav = () => {
+const Nav = props => {
   return (
     <div>
+      <p>this is {props.username}</p>
       <p>This is the nav</p>
       <Link to="/dashboard">
         <button>Home</button>
@@ -16,7 +17,6 @@ const Nav = () => {
       <Link to="/">
         <button>Logout</button>
       </Link>
-      {console.log(props)}
     </div>
   );
 };

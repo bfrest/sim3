@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
+import { connect } from "react-redux";
 import axios from "axios";
+import { logIn } from "../../ducks/reducer.js";
 
 class Auth extends Component {
   constructor() {
@@ -13,7 +15,7 @@ class Auth extends Component {
     };
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
-    this.createUser = this.createUser.bind(this);
+    this.register = this.register.bind(this);
     this.attemptLogin = this.attemptLogin.bind(this);
   }
 
@@ -29,7 +31,7 @@ class Auth extends Component {
     });
   }
 
-  createUser() {
+  register() {
     const { username, password } = this.state;
     // this sets the state to of toDashboard to true if the register is successfull so it can redirect to the dashboard
     axios.post("http://localhost:3001/api/register", { username, password }).then(this.setState({ toDashboard: true }));
@@ -51,10 +53,13 @@ class Auth extends Component {
         <input className="passwordInput" type="text" placeholder="Password" onChange={this.handlePassword} />
 
         <button onClick={this.attemptLogin}>Login</button>
-        <button onClick={this.createUser}>Register</button>
+        <button onClick={this.register}>Register</button>
       </div>
     );
   }
 }
 
-export default Auth;
+export default connect(
+  null,
+  { logIn }
+)(Auth);
