@@ -1,0 +1,52 @@
+.Auth {
+  height: 100vh;
+  background-image: url("./space.jpeg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30em;
+  width: 30em;
+  background: linear-gradient(to right bottom, #302b63, #232526);
+  box-shadow: 4px 4px 15px black;
+  border-radius: 15px;
+}
+
+.authHeader {
+  font-size: 3em;
+  justify-self: flex-start;
+}
+
+.passwordContainer {
+  padding: 20px;
+}
+
+.authForm input {
+  margin-left: 20px;
+}
+
+.authButtonContainer {
+  display: inline;
+}
+
+.authButton {
+  font-size: 1em;
+  background: none;
+  border: 2px solid white;
+  border-radius: 15px;
+  color: white;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+
+.logo {
+  height: 150px;
+}

@@ -1,0 +1,28 @@
+.Nav {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 8%;
+  background: linear-gradient(#000000, #232526);
+  box-shadow: 0 0 20px black;
+  color: white;
+  align-items: center;
+  text-align: center;
+}
+
+.navIcon {
+  height: 60px;
+  width: 60px;
+}
+
+.homeButton {
+  margin-top: 70px;
+}
+
+.newPostButton {
+  margin-top: 75px;
+}
+
+.logoutButton {
+  margin-top: 320px;
+}

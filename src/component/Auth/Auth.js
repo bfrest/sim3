@@ -3,6 +3,8 @@ import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import axios from "axios";
 import { logIn } from "../../ducks/reducer.js";
+import AuthStyle from "./AuthStyle.css";
+import ufo from "./ufo.png";
 
 class Auth extends Component {
   constructor() {
@@ -55,13 +57,32 @@ class Auth extends Component {
     }
 
     return (
-      <div>
-        <input className="usernameInput" type="text" placeholder="Username" onChange={this.handleUsername} />
+      <div className="Auth">
+        <form className="authForm">
+          <img className="logo" src={ufo} alt="Logo" />
+          <h1 className="authHeader" />
 
-        <input className="passwordInput" type="text" placeholder="Password" onChange={this.handlePassword} />
+          <div className="usernameContainer">
+            <label for="username" className="usernameLabel">
+              Username:
+            </label>
+            <input className="authInput" type="text" onChange={this.handleUsername} />
+          </div>
 
-        <button onClick={this.attemptLogin}>Login</button>
-        <button onClick={this.register}>Register</button>
+          <div className="passwordContainer">
+            <label for="password">Password:</label>
+            <input className="authInput" type="password" onChange={this.handlePassword} />
+          </div>
+
+          <div className="authButtonContainer">
+            <button className="authButton" onClick={this.attemptLogin}>
+              Login
+            </button>
+            <button className="authButton" onClick={this.register}>
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
