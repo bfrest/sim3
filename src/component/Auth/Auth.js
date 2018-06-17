@@ -48,7 +48,6 @@ class Auth extends Component {
         const { id, username, profile_picture } = result.data;
 
         // ! I think this is how to invoke the action creater
-        console.log(id, username, profile_picture);
         logIn(id, username, profile_picture);
         this.setState({ toDashboard: true });
       } else {

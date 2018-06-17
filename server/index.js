@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 
 app.post("/api/register", controller.createUser);
 app.post("/api/login", controller.attemptLogin);
+app.get("/api/posts", controller.getPosts);
 
 app.listen(3001, () => {
   console.log("running on 3001");

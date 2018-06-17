@@ -12,6 +12,7 @@ module.exports = {
   attemptLogin: (req, res, next) => {
     const dbConnect = req.app.get("db");
     const { username, password } = req.body;
+
     dbConnect
       .attemptLogin([username, password])
       .then(result => {
@@ -23,5 +24,19 @@ module.exports = {
         }
       })
       .catch(() => res.status(500).send());
+  },
+
+  getPosts: (req, res, next) => {
+    const dbConnect = req.app.get("db");
+    //const { userposts, search } = req.query.params;
+
+    dbConnect
+      .getPosts()
+      .then(results => {
+        res.status(200).send(results);
+      })
+      .catch(() => {
+        res.status(500).send();
+      });
   }
 };
