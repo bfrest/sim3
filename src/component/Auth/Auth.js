@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { logIn } from "../../ducks/reducer.js";
 import AuthStyle from "./AuthStyle.css";
-import ufo from "./ufo.png";
+import alien from "./alien.png";
 
 class Auth extends Component {
   constructor() {
@@ -41,13 +41,19 @@ class Auth extends Component {
 
   attemptLogin() {
     const { username, password } = this.state;
-    // this is a post request because you need to be able to get the info from the bosy instead of putting it in the query parameter
+    // this is a post request because you need to be able to get the info from the body instead of putting it in the query parameter
 
     axios.post("http://localhost:3001/api/login", { username, password }).then(result => {
-      // ! I think this is how to invoke the action creater
-      const { id, username, profile_picture } = result.data;
-      logIn(id, username, profile_picture);
-      this.setState({ toDashboard: true });
+      if (result) {
+        const { id, username, profile_picture } = result.data;
+
+        // ! I think this is how to invoke the action creater
+        console.log(id, username, profile_picture);
+        logIn(id, username, profile_picture);
+        this.setState({ toDashboard: true });
+      } else {
+        return "NOPE";
+      }
     });
   }
 
@@ -59,18 +65,18 @@ class Auth extends Component {
     return (
       <div className="Auth">
         <form className="authForm">
-          <img className="logo" src={ufo} alt="Logo" />
+          <img className="logo" src={alien} alt="Logo" />
           <h1 className="authHeader" />
 
           <div className="usernameContainer">
-            <label for="username" className="usernameLabel">
+            <label htmlFor="username" className="usernameLabel">
               Username:
             </label>
             <input className="authInput" type="text" onChange={this.handleUsername} />
           </div>
 
           <div className="passwordContainer">
-            <label for="password">Password:</label>
+            <label htmlFor="password">Password:</label>
             <input className="authInput" type="password" onChange={this.handlePassword} />
           </div>
 

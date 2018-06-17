@@ -1,6 +1,7 @@
 .Auth {
   height: 100vh;
-  background-image: url("./space.jpeg");
+  width: 100%;
+  background: linear-gradient(to right bottom, #474e68, #2c5364);
   background-size: cover;
   display: flex;
   align-items: center;
@@ -15,7 +16,7 @@
   justify-content: center;
   height: 30em;
   width: 30em;
-  background: linear-gradient(to right bottom, #302b63, #232526);
+  background: linear-gradient(to right bottom, #474e68, #2c5364);
   box-shadow: 4px 4px 15px black;
   border-radius: 15px;
 }
@@ -48,5 +49,5 @@
 }
 
 .logo {
-  height: 150px;
+  height: 170px;
 }
