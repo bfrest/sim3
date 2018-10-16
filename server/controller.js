@@ -2,11 +2,15 @@ module.exports = {
   createUser: (req, res, next) => {
     const dbConnect = req.app.get("db");
     const { username, password } = req.body;
+    const profile_pic = `https://robohash.org/${username}.png`;
 
     dbConnect
-      .createUser([username, password])
+      .createUser([username, password, profile_pic])
       .then(user => res.status(200).send(user))
-      .catch(() => res.status(500).send());
+      .catch(err => {
+        res.status(500).send(err);
+        console.log(err);
+      });
   },
 
   attemptLogin: (req, res, next) => {
@@ -32,6 +36,19 @@ module.exports = {
 
     dbConnect
       .getPosts()
+      .then(results => {
+        res.status(200).send(results);
+      })
+      .catch(() => {
+        res.status(500).send();
+      });
+  },
+
+  getAllUsers: (req, res, next) => {
+    const dbConnect = req.app.get("db");
+
+    dbConnect
+      .getAllUsers()
       .then(results => {
         res.status(200).send(results);
       })

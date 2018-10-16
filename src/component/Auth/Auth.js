@@ -3,7 +3,7 @@ import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import axios from "axios";
 import { logIn } from "../../ducks/reducer.js";
-import AuthStyle from "./AuthStyle.css";
+import "./AuthStyle.css";
 import alien from "./alien.png";
 
 class Auth extends Component {
@@ -34,9 +34,9 @@ class Auth extends Component {
   }
 
   register() {
-    const { username, password } = this.state;
+    //const { username, password } = this.state;
     // this sets the state to of toDashboard to true if the register is successfull so it can redirect to the dashboard
-    axios.post("http://localhost:3001/api/register", { username, password }).then(this.setState({ toDashboard: true }));
+    axios.post("http://localhost:3001/api/register", { username: this.state.username, password: this.state.password }).then(console.log("created"));
   }
 
   attemptLogin() {
@@ -48,7 +48,7 @@ class Auth extends Component {
         const { id, username, profile_picture } = result.data;
 
         // ! I think this is how to invoke the action creater
-        logIn(id, username, profile_picture);
+        this.props.logIn(id, username, profile_picture);
         this.setState({ toDashboard: true });
       } else {
         return "NOPE";
@@ -65,7 +65,6 @@ class Auth extends Component {
       <div className="Auth">
         <form className="authForm">
           <img className="logo" src={alien} alt="Logo" />
-          <h1 className="authHeader" />
 
           <div className="usernameContainer">
             <label htmlFor="username" className="usernameLabel">

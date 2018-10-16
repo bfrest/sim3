@@ -26,3 +26,11 @@
 .logoutButton {
   margin-top: 220px;
 }
+
+.profile-pic {
+  margin: 10px 0 0 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background: white;
+}

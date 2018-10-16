@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import DashboardStyle from "./DashboardStyle.css";
+import "./DashboardStyle.css";
 import axios from "axios";
+import FriendsList from "../FriendList/Friendlist.js";
 
 class Dashboard extends Component {
   constructor() {
@@ -18,7 +19,6 @@ class Dashboard extends Component {
   componentDidMount() {
     axios.get(`http://localhost:3001/api/posts`).then(results => {
       this.setState({ posts: [...results.data] });
-      console.log(this.state.posts);
     });
   }
 
@@ -44,19 +44,24 @@ class Dashboard extends Component {
 
     const posts = this.state.posts.map(post => {
       return (
-        <div>
+        <div key={post.id}>
           <h2>{post.title}</h2>
           <p>{post.author_id}</p>
         </div>
       );
     });
+
     return (
       <div className="Dashboard">
         <input type="text" placeholder="Search by title" onChange={this.handleSearch} />
         <button>Search</button>
         <button>Reset</button>
-        My Posts<input type="checkbox" checked={checked} onClick={this.handleMyPosts} />
-        {posts}
+        My Posts
+        <input type="checkbox" defaultChecked="true" onClick={this.handleMyPosts} />
+        <div className="posts">{posts}</div>
+        <div className="friends">
+          <FriendsList />
+        </div>
       </div>
     );
   }

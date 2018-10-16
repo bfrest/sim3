@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Nav from "./component/Nav/Nav.js";
 import routes from "./routes.js";
-// with router is a helper function from reeact-router
 import { withRouter } from "react-router";
+import { LoggedInContext } from "./Context/LoggedIn";
 
 class App extends Component {
   render() {
