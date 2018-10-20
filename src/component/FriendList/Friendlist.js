@@ -6,9 +6,11 @@ class FriendsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listOfPeople: []
+      listOfPeople: [],
+      recommendedList: []
     };
     this.getAllUsers = this.getAllUsers.bind(this);
+    this.filterFriends = this.filterFriends.bind(this);
   }
 
   componentDidMount() {
@@ -21,11 +23,14 @@ class FriendsList extends Component {
     });
   }
 
+  filterFriends() {}
+
   render() {
     return (
       <div className="recommendedList">
         <p>Recommended Friends</p>
-        {this.state.listOfPeople.map(person => {
+        {// we will output and limit the array to 5 here
+        this.state.listOfPeople.map(person => {
           return <p>{person.username}</p>;
         })}
       </div>
