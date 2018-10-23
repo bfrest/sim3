@@ -5,7 +5,7 @@ import logout from "./logout.png";
 import home from "./home.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { LoggedInContext } from "../../Context/LoggedIn.js";
+import axios from "axios";
 
 class Nav extends Component {
   constructor(props) {
@@ -13,6 +13,8 @@ class Nav extends Component {
     this.state = {
       username: "",
       profilePicture: "",
+      id: 0,
+      friendsList: [],
       otherUsers: []
     };
   }
@@ -24,11 +26,22 @@ class Nav extends Component {
     }
   }
 
+  getAllData() {
+    // ! I think thats how to do the query
+    axios.get(`/api/userInfo?id=17`).then(results => {
+      console.log(results.data);
+    });
+  }
+
   render() {
+    const { username, id, profilePicture } = this.props.profilePicture;
+
     return (
       <div className="Nav">
-        <img className="profile-pic" src={`https://robohash.org/${this.state.profilePicture}.png`} alt="avatar" />
-        <p>{this.state.username}</p>
+        {console.log(this.props.profilePicture.id)}
+        <img className="profile-pic" src={profilePicture} alt="avatar" />
+        <h2>{username}</h2>
+
         <Link to="/dashboard">
           <img className="navIcon homeButton" src={home} alt="home" />
         </Link>

@@ -1,0 +1,1 @@
+SELECT users.id, username, profile_picture, friend1, friend2, friend3 FROM users, friends WHERE (users.id = $1 AND friends.id = $1);

@@ -55,5 +55,20 @@ module.exports = {
       .catch(() => {
         res.status(500).send();
       });
+  },
+
+  getAllUserInfo: (req, res, next) => {
+    const dbConnect = req.app.get("db");
+    const { id } = req.query;
+    console.log(req.query);
+    dbConnect
+      .getAllUserInfo([id])
+      .then(results => {
+        console.log(results);
+        res.status(200).send(results);
+      })
+      .catch(() => {
+        res.status(500).send();
+      });
   }
 };

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./DashboardStyle.css";
 import axios from "axios";
 import FriendsList from "../FriendList/Friendlist.js";
-import { LoggedInContext } from "../../Context/LoggedIn.js";
 
 class Dashboard extends Component {
   constructor() {
@@ -63,11 +62,6 @@ class Dashboard extends Component {
         <div className="friends">
           <FriendsList />
         </div>
-        <LoggedInContext.Consumer>
-          {context => {
-            <p>{context.state.username}</p>;
-          }}
-        </LoggedInContext.Consumer>
       </div>
     );
   }

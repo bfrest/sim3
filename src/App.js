@@ -3,7 +3,7 @@ import "./App.css";
 import Nav from "./component/Nav/Nav.js";
 import routes from "./routes.js";
 import { withRouter } from "react-router";
-import { LoggedInContext } from "./Context/LoggedIn";
+import LoggedInProvider from "./Context/LoggedInProvider.js";
 
 class App extends Component {
   render() {
@@ -15,10 +15,12 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        {showNav}
-        {routes}
-      </div>
+      <LoggedInProvider>
+        <div className="App">
+          {showNav}
+          {routes}
+        </div>
+      </LoggedInProvider>
     );
   }
 }
