@@ -60,12 +60,25 @@ module.exports = {
   getAllUserInfo: (req, res, next) => {
     const dbConnect = req.app.get("db");
     const { id } = req.query;
-    console.log(req.query);
+
     dbConnect
       .getAllUserInfo([id])
       .then(results => {
-        console.log(results);
         res.status(200).send(results);
+      })
+      .catch(() => {
+        res.status(500).send();
+      });
+  },
+
+  getFriendList: (req, res, next) => {
+    const dbConnect = req.app.get("db");
+    const { id } = req.query;
+
+    dbConnect
+      .getFriendList([id])
+      .then(friendsId => {
+        res.status(200).send(friendsId);
       })
       .catch(() => {
         res.status(500).send();

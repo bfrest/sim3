@@ -11,7 +11,6 @@ class FriendsList extends Component {
       showFriends: []
     };
     this.getAllUsers = this.getAllUsers.bind(this);
-    // this.showList = this.showList.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +25,7 @@ class FriendsList extends Component {
 
   render() {
     const recommendedList = [...this.state.listOfPeople];
-    const friendsList = [17, 14];
+    const friendsList = [...this.props.listOfFriends];
 
     //loops the users friends array
     for (let i = 0; i < friendsList.length; i++) {

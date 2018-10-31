@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./DashboardStyle.css";
 import axios from "axios";
-import FriendsList from "../FriendList/Friendlist.js";
 
 class Dashboard extends Component {
   constructor() {
@@ -35,13 +34,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    let checked;
-    if (this.state.showMyPosts === true) {
-      checked = true;
-    } else {
-      checked = false;
-    }
-
     const posts = this.state.posts.map(post => {
       return (
         <div key={post.id}>
@@ -59,9 +51,6 @@ class Dashboard extends Component {
         My Posts
         <input type="checkbox" defaultChecked="true" onClick={this.handleMyPosts} />
         <div className="posts">{posts}</div>
-        <div className="friends">
-          <FriendsList />
-        </div>
       </div>
     );
   }

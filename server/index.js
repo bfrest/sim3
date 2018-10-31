@@ -22,6 +22,7 @@ app.post("/api/login", controller.attemptLogin);
 app.get("/api/posts", controller.getPosts);
 app.get("/api/friends", controller.getAllUsers);
 app.get("/api/userInfo", controller.getAllUserInfo);
+app.get("/api/getFriends", controller.getFriendList);
 
 app.listen(3001, () => {
   console.log("running on 3001");
