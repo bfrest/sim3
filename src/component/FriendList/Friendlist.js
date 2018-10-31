@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./FriendListStyle.css";
-import { LoggedInContext } from "../../Context/LoggedInProvider.js";
 
 class FriendsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       listOfPeople: [],
-      recommendedList: []
+      friends: [],
+      showFriends: []
     };
     this.getAllUsers = this.getAllUsers.bind(this);
-    this.filterFriends = this.filterFriends.bind(this);
+    // this.showList = this.showList.bind(this);
   }
 
   componentDidMount() {
@@ -20,30 +20,41 @@ class FriendsList extends Component {
 
   getAllUsers() {
     axios.get("http://localhost:3001/api/friends").then(results => {
-      this.setState({ listOfPeople: results.data });
+      this.setState({ listOfPeople: [...results.data] });
     });
   }
 
-  filterFriends() {
-    // this is possibly where we will
-    // sort the array of recommended friends
-  }
-
   render() {
+    const recommendedList = [...this.state.listOfPeople];
+    const friendsList = [17, 14];
+
+    //loops the users friends array
+    for (let i = 0; i < friendsList.length; i++) {
+      // loops over the list of all the people in a database
+      for (let j = 0; j < recommendedList.length; j++) {
+        if (friendsList[i] === recommendedList[j].id) {
+          // takes away the person from the array if the
+          // person in already on the friends list
+          recommendedList.splice(j, 1);
+        }
+      }
+    }
+
+    // gets the first 5 from the sorted list of users to display recommended friends
+    const recommended = [recommendedList[0], recommendedList[1], recommendedList[2], recommendedList[3], recommendedList[4]];
+    let listOfPeeps;
+    if (recommended[0] !== undefined) {
+      listOfPeeps = recommended.map(person => {
+        return <p>{person.username}</p>;
+      });
+    } else {
+      listOfPeeps = "";
+    }
+
     return (
       <div className="recommendedList">
-        <LoggedInContext.Consumer>
-          {context => (
-            <React.Fragment>
-              <h3>{context.state.userName}</h3>
-            </React.Fragment>
-          )}
-        </LoggedInContext.Consumer>
         <p>Recommended Friends</p>
-        {// we will output and limit the array to 5 here
-        this.state.listOfPeople.map(person => {
-          return <p key={person.id}>{person.username}</p>;
-        })}
+        {listOfPeeps}
       </div>
     );
   }

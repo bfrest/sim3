@@ -26,12 +26,12 @@ class Nav extends Component {
     }
   }
 
-  getAllData() {
-    // ! I think thats how to do the query
-    axios.get(`/api/userInfo?id=17`).then(results => {
-      console.log(results.data);
-    });
-  }
+  // getAllData() {
+  //   // ! I think thats how to do the query
+  //   axios.get(`/api/userInfo?id=17`).then(results => {
+  //     console.log(results.data);
+  //   });
+  // }
 
   render() {
     const { username, id, profilePicture } = this.props.profilePicture;

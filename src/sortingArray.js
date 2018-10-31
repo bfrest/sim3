@@ -1,18 +1,26 @@
-const array1 = [{ id: 16, username: "bfrest" }, { id: 14, username: "mfrest" }, { id: 132, username: "kfrest" }, { id: 3, username: "kfas" }];
+const allPeople = [
+  { id: 16, username: "bfrest" },
+  { id: 14, username: "mfrest" },
+  { id: 132, username: "kfrest" },
+  { id: 3, username: "kfas" },
+  { id: 17, username: "s" },
+  { id: 54, username: "kfas" },
+  { id: 5, username: "ks" },
+  { id: 1, username: "kfas" },
+  { id: 34, username: "kfas" }
+];
 const friends = [17, 14];
-const reccomended = [...array1];
 
+//loops the users friends array
 for (let i = 0; i < friends.length; i++) {
-  for (let j = 0; j < reccomended.length; j++) {
-    console.log(friends[i], reccomended[j].id);
-    if (friends[i] === reccomended[j].id) {
-      reccomended.splice(reccomended[j], 1);
-    } else {
-      console.log(reccomended[j].id);
+  // loops over the list of all the people in a database
+  for (let j = 0; j < allPeople.length; j++) {
+    if (friends[i] === allPeople[j].id) {
+      // takes away the person from the array if the
+      // person in already on the friends list
+      allPeople.splice(j, 1);
     }
   }
 }
 
-console.log(reccomended);
-
-// you need to make a copy of the person list, then drop the ones that match an id from the friends
+console.log(allPeople);
