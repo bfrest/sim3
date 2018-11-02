@@ -31,12 +31,9 @@ class Nav extends Component {
 
   getFriends(id) {
     axios.get(`http://localhost:3001/api/getFriends?id=${id}`).then(results => {
-      // loops over the data to take it out of an object, and put it in an array
-      // the results.data should never be more than one item in the array
-      // and the only item should be an object that contains a list of friends id's
-      for (let i = 0; i < results.data.length; i++) {
-        this.setState({ friendsList: [results.data[i].friend1, results.data[i].friend2, results.data[i].friend3, results.data[i].friend4, results.data[i].friend5] });
-      }
+      this.setState({
+        friendsList: [...results.data[0].friend1, results.data[0].friend2, results.data[0].friend3, results.data[0].friend4, results.data[0].friend5]
+      });
     });
   }
 
@@ -59,7 +56,7 @@ class Nav extends Component {
           <img className="navIcon logoutButton" src={logout} alt="logout" />
         </Link>
         <div className="friends">
-          <FriendsList userId={id} listOfFriends={this.state.friendsList} />
+          <FriendsList id={id} listOfFriends={this.state.friendsList} />
         </div>
       </div>
     );

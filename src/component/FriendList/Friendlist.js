@@ -24,8 +24,9 @@ class FriendsList extends Component {
   }
 
   render() {
+    const user = this.props.userId;
     const recommendedList = [...this.state.listOfPeople];
-    const friendsList = [...this.props.listOfFriends];
+    const friendsList = [...this.props.listOfFriends, this.props.id];
 
     //loops the users friends array
     for (let i = 0; i < friendsList.length; i++) {
@@ -42,6 +43,8 @@ class FriendsList extends Component {
     // gets the first 5 from the sorted list of users to display recommended friends
     const recommended = [recommendedList[0], recommendedList[1], recommendedList[2], recommendedList[3], recommendedList[4]];
     let listOfPeeps;
+
+    // display the list of recommended friends
     if (recommended[0] !== undefined) {
       listOfPeeps = recommended.map(person => {
         return <p>{person.username}</p>;
