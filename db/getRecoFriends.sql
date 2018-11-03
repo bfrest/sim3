@@ -1,0 +1,1 @@
+SELECT id, username, profile_picture from users where id = $1 or id = $2 or id = $3 or id = $4 or id = $5;

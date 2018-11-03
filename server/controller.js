@@ -83,5 +83,18 @@ module.exports = {
       .catch(() => {
         res.status(500).send();
       });
+  },
+
+  getRecoFriends: (req, res, next) => {
+    const dbConnect = req.app.get("db");
+    const { id1, id2, id3, id4, id5 } = req.query;
+    console.log(id1, id2, id3);
+
+    dbConnect
+      .getRecoFriends([id1, id2, id3, id4, id5])
+      .then(friends => {
+        res.status(200).send(friends);
+      })
+      .catch(() => res.status(500).send());
   }
 };
